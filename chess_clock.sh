@@ -10,7 +10,9 @@ while [[ "$run" -eq 1 ]]; do
   if [[ "$act" -eq 1 ]]; then r1=$((t1-el)); else r2=$((t2-el)); fi
   [[ "$r1" -lt 0 ]] && r1=0; [[ "$r2" -lt 0 ]] && r2=0
   printf "\033[2J\033[H"
-  printf "Player 1: %02d:%02d\n" $((r1/60)) $((r1%60))
-  printf "Player 2: %02d:%02d\nMove: %d\n" $((r2/60)) $((r2%60)) $((mov+1))
+  [[ "$act" -eq 1 ]] && printf "\033[32m" || printf "\033[2m"
+  printf "Player 1: %02d:%02d\n\033[0m" $((r1/60)) $((r1%60))
+  [[ "$act" -eq 2 ]] && printf "\033[32m" || printf "\033[2m"
+  printf "Player 2: %02d:%02d\n\033[0mMove: %d\n" $((r2/60)) $((r2%60)) $((mov+1))
   read -t 1 -r inp
 done
