@@ -2,7 +2,7 @@
 
 **A real-time dual countdown timer — one file, pure Bash, zero dependencies beyond the Unix toolbox.**
 
-> 50 lines · 19 variables · every name ≤3 chars · shellcheck clean
+> 49 lines · 19 variables · every name ≤3 chars · shellcheck clean
 
 ---
 
@@ -99,8 +99,8 @@ Every hard rule from the hackathon brief — met exactly.
 | Rule | Status |
 |------|--------|
 | Bash only | ✅ Single `.sh` file, no other languages |
-| ≤50 lines of code | ✅ **50 lines** (comments/blanks excluded) |
-| Variable names ≤3 chars | ✅ All 17 identifiers: `t1`, `t2`, `act`, `mov`, … |
+| ≤50 lines of code | ✅ **49 lines** (comments/blanks excluded) |
+| Variable names ≤3 chars | ✅ **19 identifiers:** `t1`, `t2`, `act`, `mov`, `m1`, `m2`, `u1`, `u2`, `run`, `qui`, `win`, `tst`, `tot`, `min`, `el`, `r1`, `r2`, `inp`, `sec` |
 | No external libraries | ✅ No ncurses, dialog, or sourced files |
 | `$SECONDS` for timing | ✅ All deltas via `$((SECONDS - tst))` |
 | `read -t 1` polling | ✅ 1-second non-blocking input loop |
@@ -113,7 +113,7 @@ Every hard rule from the hackathon brief — met exactly.
 
 ---
 
-## Architecture (50 lines, one loop)
+## Architecture (49 lines, one loop)
 
 ```
 ┌─────────────┐     read min      ┌──────────────────────────────────┐
