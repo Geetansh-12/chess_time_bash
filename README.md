@@ -16,27 +16,51 @@ The answer is `chess_clock.sh`. No runtime. No imports. No ncurses. Just builtin
 
 ---
 
-## Quick start
+## Requirements (for judges)
+
+**Tested on:** Linux, macOS, and Git Bash on Windows.
+
+| Tool | Required? | Purpose |
+|------|-----------|---------|
+| **Bash** | Yes | Runs the script |
+| **bc** | Yes (end game only) | Float averages in the summary (`P1 avg`, `P2 avg`) |
+| **awk**, **printf**, etc. | Included with Bash | Already used by the script |
+
+The **game itself** (live clocks, turns, colors, timeout, quit) runs with Bash alone. If `bc` is missing, play still works; only the two average lines at the end will fail.
+
+### One-command run (Linux / macOS)
 
 ```bash
 bash chess_clock.sh
 ```
 
-Or make it executable:
+`bc` is pre-installed on most Linux distros and macOS. No extra setup.
+
+### Windows (Git Bash)
+
+1. Open **Git Bash** (not CMD or PowerShell).
+2. Ensure `bc` works:
+   ```bash
+   echo "scale=1; 10/3" | bc   # expect: 3.3
+   ```
+3. If `bc` is missing, install a real `bc.exe` into `C:\Program Files\Git\usr\bin\` (see [MSYS2 bc package](https://packages.msys2.org/package/bc)) — avoid empty 0 KB files.
+
+### Quick environment check
 
 ```bash
-chmod +x chess_clock.sh
-./chess_clock.sh
+command -v bash && command -v bc && echo "scale=1; 10/3" | bc
 ```
 
-**Requires:** Bash + `bc` (for float averages in the end summary).  
-Linux and macOS include `bc` by default. On Git Bash for Windows, copy a real `bc.exe` (not a 0 KB placeholder) into `C:\Program Files\Git\usr\bin\`.
-
-Verify:
+If that prints `3.3`, you are ready:
 
 ```bash
-bc --version
-echo "scale=1; 10/3" | bc   # expect: 3.3
+bash chess_clock.sh
+```
+
+Or:
+
+```bash
+chmod +x chess_clock.sh && ./chess_clock.sh
 ```
 
 ---
@@ -89,7 +113,7 @@ Every hard rule from the hackathon brief — met exactly.
 
 ---
 
-## Architecture (49 lines, one loop)
+## Architecture (50 lines, one loop)
 
 ```
 ┌─────────────┐     read min      ┌──────────────────────────────────┐
