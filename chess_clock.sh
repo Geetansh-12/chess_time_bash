@@ -28,9 +28,9 @@ while [[ "$run" -eq 1 ]]; do
   [[ "$act" -eq 2 && "$t2" -le "$el" ]] && win=1 && run=0
   printf "\033[2J\033[H"
   [[ "$act" -eq 1 ]] && printf "\033[32m" || printf "\033[2m"
-  printf "Player 1: %02d:%02d\n\033[0m" $((r1/60)) $((r1%60))
+  printf "Player 1: %02d:%02d\033[0m\n" $((r1/60)) $((r1%60))
   [[ "$act" -eq 2 ]] && printf "\033[32m" || printf "\033[2m"
-  printf "Player 2: %02d:%02d\n\033[0mMove: %d\nPress ENTER to end your turn, q+ENTER to quit\n" $((r2/60)) $((r2%60)) $((mov+1))
+  printf "Player 2: %02d:%02d\033[0m\nMove: %d\nPress ENTER to end your turn, q+ENTER to quit\n" $((r2/60)) $((r2%60)) $((mov+1))
   if [[ "$run" -eq 0 ]]; then
     if [[ "$act" -eq 1 ]]; then u1=$((u1+el)); m1=$((m1+1)); t1=0
     else u2=$((u2+el)); m2=$((m2+1)); t2=0; fi
@@ -44,7 +44,7 @@ while [[ "$run" -eq 1 ]]; do
       qui=1; run=0
     else
       mov=$((mov+1))
-      if [[ "$act" -eq 1 ]]; then t1=$((t1-sec)); u1=$((u1+sec)); m1=$((m1+1)); act=2
-      else t2=$((t2-sec)); u2=$((u2+sec)); m2=$((m2+1)); act=1; fi
+      if [[ "$act" -eq 1 ]]; then t1=$((t1>sec?t1-sec:0)); u1=$((u1+sec)); m1=$((m1+1)); act=2
+      else t2=$((t2>sec?t2-sec:0)); u2=$((u2+sec)); m2=$((m2+1)); act=1; fi
       tst=$SECONDS; fi; fi; done
 sum

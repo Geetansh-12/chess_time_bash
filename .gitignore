@@ -1,6 +1,7 @@
 .phases/
 push_phase.sh
 TEAM_PUSH.md
+PRESENTATION.md
 bc.pkg.tar.zst
 bc.pkg.tar
 shellcheck*
