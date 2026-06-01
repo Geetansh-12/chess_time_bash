@@ -24,7 +24,7 @@ The answer is `chess_clock.sh`. No runtime. No imports. No ncurses. Just builtin
 |------|-----------|---------|
 | **Bash** | Yes | Runs the script |
 | **bc** | Yes (end game only) | Float averages in the summary (`P1 avg`, `P2 avg`) |
-| **awk**, **printf**, etc. | Included with Bash | Already used by the script |
+| **printf**, etc. | Included with Bash | Used for all screen output |
 
 The **game itself** (live clocks, turns, colors, timeout, quit) runs with Bash alone. If `bc` is missing, play still works; only the two average lines at the end will fail.
 
